@@ -1,4 +1,4 @@
-Hearthstone-Stats
+=*Hearthstone-Stats
 
 Application is currently deployed at http://hs-stats.herokuapp.com
 
