@@ -1,6 +1,6 @@
 class Arena < ActiveRecord::Base
   belongs_to :user
-  has_many :matches
+  has_many :matches, dependent: :destroy
 
   default_scope order("id")
 
