@@ -47,7 +47,10 @@
           <a class="brand" href="#">Hearthstone Stats</a>
           <div class="container nav-collapse">
             <ul class="nav">
-              <li><%= link_to "Arenas", arenas_path  %></li>
+              <li><%= link_to "My Series", arenas_path  %></li>
+              <% if user_signed_in? %>
+                <li><%= link_to "My Stats", stats_path(username: current_user.username)  %></li>
+              <% end %>
             </ul>
             <ul class="nav pull-right">
             <% if user_signed_in? %>
@@ -76,7 +79,10 @@
               <h3>Sidebar</h3>
               <ul class="nav nav-list">
                 <li class="nav-header">Sidebar</li>
-                <li><%= link_to "Arenas", arenas_path %></li>
+                <li><%= link_to "My Series", arenas_path  %></li>
+                <% if user_signed_in? %>
+                  <li><%= link_to "My Stats ", stats_path(username: current_user.username)  %></li>
+                <% end %>
               </ul>
             </div><!--/.well -->
           </div><!--/span-->
