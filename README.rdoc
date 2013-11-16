@@ -1,28 +1,12 @@
-== README
+Hearthstone-Stats
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Application is currently deployed at http://hs-stats.herokuapp.com
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+This application is designed to provide users with a quick an efficient way to track their Hearthstone Arena Statistics.
+With this application you can:
+  -Keep track of your current Arena Series
+  -See your stat history update on the fly
+  -Check your Overall and Hero specific Win Percentages.
+  -Share your stats with your friends.
+  
+To share your stats you need only supply your friends with your username, they can access your stats profile anytime anywhere @ http://hs-stats.herokuapp.com/stats/[your username]
