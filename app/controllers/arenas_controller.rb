@@ -10,11 +10,10 @@ class ArenasController < ApplicationController
     @overall = current_user.total_wins
     @overall_winrate = current_user.winrate
 
-    winrate_turn = current_user.winrate_turn
-    @first_winrate = winrate_turn.first.first
-    @first_winrate_percentage = winrate_turn.first.last
-    @second_winrate = winrate_turn.last.first
-    @second_winrate_percentage = winrate_turn.last.last
+    @winrate_turn = current_user.winrate_turn
+    @series_stats = current_user.series_stats
+    @as_class = current_user.winrate_as_class
+    @against_class = current_user.winrate_against_class
 
   end
 
