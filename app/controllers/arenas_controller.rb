@@ -1,20 +1,16 @@
 class ArenasController < ApplicationController
   before_filter :authenticate_user!
-  def index
-    @arena = Arena.current_arena(current_user)
 
-    if @arena
+  def index
+    current_user.check_for_stats
+    current_user.check_arena_complete
+    @stats = current_user.stat
+
+    @arena = Arena.current_arena(current_user)
+    if @arena #Here to provide current arena stats only. Does not affect overall stats.
       @arena_score = @arena.score_formatted
     end
-
-    @overall = current_user.total_wins
-    @overall_winrate = current_user.winrate
-
-    @winrate_turn = current_user.winrate_turn
-    @series_stats = current_user.series_stats
-    @as_class = current_user.winrate_as_class
-    @against_class = current_user.winrate_against_class
-
+    
   end
 
   def new
@@ -25,6 +21,8 @@ class ArenasController < ApplicationController
     arena = Arena.new(arena_params)
     arena.user = current_user
     if arena.save
+      current_user.add_arena_count
+
       redirect_to arenas_path, flash: {success: "Arena started successfully."}
     else
       render :new
