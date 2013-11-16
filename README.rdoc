@@ -9,4 +9,6 @@ With this application you can:
   -Check your Overall and Hero specific Win Percentages.
   -Share your stats with your friends.
   
-To share your stats you need only supply your friends with your username, they can access your stats profile anytime anywhere @ http://hs-stats.herokuapp.com/stats/[your username]
+To share your stats you need only supply your friends with your username, they can access your stats profile anytime anywhere at http://hs-stats.herokuapp.com/stats/[your username]
+
+Try it out for yourself! Check out my stats: http://hs-stats.herokuapp.com/stats/celsian
