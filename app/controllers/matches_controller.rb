@@ -13,6 +13,8 @@ class MatchesController < ApplicationController
     match.arena = current_user.arenas.last
 
     if match.save
+      current_user.add_match_stats(match)
+
       redirect_to arenas_path, flash: {success: "Match results successfully added."}
     else
       render :new
