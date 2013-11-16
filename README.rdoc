@@ -1,6 +1,6 @@
 =Hearthstone-Stats
 
-==Application is currently deployed at http://hs-stats.herokuapp.com
+Application is currently deployed at http://hs-stats.herokuapp.com
 
 This application is designed to provide users with a quick an efficient way to track their Hearthstone Arena Statistics.
 With this application you can:
