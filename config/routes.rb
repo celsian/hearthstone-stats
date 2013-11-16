@@ -1,7 +1,11 @@
 HearthstoneStats::Application.routes.draw do
-  devise_for :users
+  get "stats/index"
+  get "stats/show"
+  devise_for :users, controllers: {registrations: 'registrations'}
 
   root to: "arenas#index"
+
+  get "/stats/:username", to: "stats#show", as: "stats"
 
   resources :matches
   resources :arenas

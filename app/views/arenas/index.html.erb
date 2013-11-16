@@ -17,13 +17,19 @@
 
 <div class="row">
   <span class="span9">
-    <% if @arena %>
-      <B>Current Hero:</b> <%= @arena.hero %><br>
-      <B>Score:</b> <%= @arena_score %><br>
-      <%= link_to "Add Match Result", new_match_path, class: "btn-small btn-primary" %>
-    <% else %>
-    You have no active arena's, <%= link_to "Create One!", new_arena_path %>
-    <% end %>
+    <table border=0 cellpadding=5>
+      <tr>
+        <td>
+          <% if @arena %>
+            <B>Current Hero:</b> <%= @arena.hero %><br>
+            <B>Score:</b> <%= @arena_score %><br>
+            <%= link_to "Add Match Result", new_match_path, class: "btn-small btn-primary" %>
+          <% else %>
+          You have no active arena's, <%= link_to "Create One!", new_arena_path %>
+          <% end %>
+        </td>
+      </tr>
+    </table>
   </span>
 </div>
 
@@ -43,47 +49,111 @@
         <th>Win rate:</th><td colspan=2><%= @overall_winrate %></td>
       </tr>
       <tr>
-        <th>Win rate when First:</th><td width="30%"><%= @first_winrate %></td><td><%= @first_winrate_percentage %></td>
+        <th>Win rate when First:</th>
+        <td width="30%"><%= @winrate_turn.first.first %></td>
+        <td><%= @winrate_turn.first.last %></td>
       </tr>
       <tr>
-        <th>Win rate when Second:</th><td><%= @second_winrate %></td><td><%= @second_winrate_percentage %></td>
+        <th>Win rate when Second:</th>
+        <td><%= @winrate_turn.last.first %></td>
+        <td><%= @winrate_turn.last.last %></td>
       </tr>
     </table>
   </span>
-  <span class="span4 offset1">
+  <span class="span5">
     <table class="table table-striped" border=0>
-      <tr><th colspan=4 class="hc">Series Statistics</center></th></tr>
+      <tr><th colspan=6 class="hc">Series Statistics</center></th></tr>
       <tr>
-        <th colspan=2 width=50%>Total Series:</th><td colspan=2><%= current_user.arenas.length %></td>
+        <th colspan=3><center>Total Series:</th><td colspan=3><center><%= current_user.arenas.length %></td>
       </tr>
       <tr>
-        <th colspan=2>Profitable Series (7+ wins):</th><td colspan=2><%= @overall_winrate %></td>
+        <th colspan=2 width=40%>Profitable (7+ wins):</th>
+        <td colspan=1><%= @series_stats[0][0] %></td>
+        <td colspan=3><%= @series_stats[0][1] %></td>
       </tr>
       <tr>
-        <th width=25%>9-0 Series:</th><td widith=25%>100</td><th width=25%>9-X Series:</th><td width=25%>100</td>
+        <th width=25%>9-0 Series:</th>
+        <td widith=25%><%= @series_stats[1][0] %></td><td width="20%"><%= @series_stats[1][1] %></td>
+        <th width=25%>9-X Series:</th>
+        <td width=25%><%= @series_stats[2][0] %></td><td><%= @series_stats[2][1] %></td>
       </tr>
       <tr>
-        <th>X-3 Series:</th><td>100</td><th>0-3 Series:</th><td>100</td>
+        <th>X-3 Series:</th>
+        <td><%= @series_stats[3][0] %></td><td><%= @series_stats[3][1] %></td>
+        <th>0-3 Series:</th>
+        <td><%= @series_stats[4][0] %></td><td><%= @series_stats[4][1] %></td>
       </tr>
     </table>
   </span>
 </div>
 <div class="row">
-  <span class="span5 offset2">
+  <span class="span7 offset1">
     <table class="table table-striped" border=0>
       <tr>
-        <th class="hc" width=30%>Class:</th>
-        <th class="hc">Win rate as Class:</th>
-        <th class="hc">Win rate against Class:</th>
+        <th class="hc" width=20%>Class:</th>
+        <th class="hc" colspan=2 width=40%>Win rate as Class:</th>
+        <th class="hc" colspan=2 width=40%>Win rate against Class:</th>
       </tr>
       <tr>
-        <th class="h">Druid</th><td>1</td><td>1</td>
+        <th class="h">Druid</th>
+        <td>W: <%= @as_class["DruidW"] %> L: <%= @as_class["Druid"]-@as_class["DruidW"] %></td><td><%= @as_class["DruidP"] %></td>
+        <td>W: <%= @against_class["DruidW"] %> L: <%= @against_class["Druid"]-@against_class["DruidW"] %></td><td><%= @against_class["DruidP"] %></td>
       </tr>
       <tr>
-        <th class="h">Hunter</th><td>1</td><td>1</td>
+        <th class="h">Hunter</th>
+        <td>W: <%= @as_class["HunterW"] %> L: <%= @as_class["Hunter"]-@as_class["HunterW"] %></td>
+        <td><%= @as_class["HunterP"] %></td>
+        <td>W: <%= @against_class["HunterW"] %> L: <%= @against_class["Hunter"]-@against_class["HunterW"] %></td>
+        <td><%= @against_class["HunterP"] %></td>
       </tr>
       <tr>
-        <th class="h">Mage</th><td>1</td><td>1</td>
+        <th class="h">Mage</th>
+        <td>W: <%= @as_class["MageW"] %> L: <%= @as_class["Mage"]-@as_class["MageW"] %></td>
+        <td><%= @as_class["MageP"] %></td>
+        <td>W: <%= @against_class["MageW"] %> L: <%= @against_class["Mage"]-@against_class["MageW"] %></td>
+        <td><%= @against_class["MageP"] %></td>
+      </tr>
+      <tr>
+        <th class="h">Paladin</th>
+        <td>W: <%= @as_class["PaladinW"] %> L: <%= @as_class["Paladin"]-@as_class["PaladinW"] %></td>
+        <td><%= @as_class["PaladinP"] %></td>
+        <td>W: <%= @against_class["PaladinW"] %> L: <%= @against_class["Paladin"]-@against_class["PaladinW"] %></td>
+        <td><%= @against_class["PaladinP"] %></td>
+      </tr>
+      <tr>
+        <th class="h">Priest</th>
+        <td>W: <%= @as_class["PriestW"] %> L: <%= @as_class["Priest"]-@as_class["PriestW"] %></td>
+        <td><%= @as_class["PriestP"] %></td>
+        <td>W: <%= @against_class["PriestW"] %> L: <%= @against_class["Priest"]-@against_class["PriestW"] %></td>
+        <td><%= @against_class["PriestP"] %></td>
+      </tr>
+      <tr>
+        <th class="h">Shaman</th>
+        <td>W: <%= @as_class["ShamanW"] %> L: <%= @as_class["Shaman"]-@as_class["ShamanW"] %></td>
+        <td><%= @as_class["ShamanP"] %></td>
+        <td>W: <%= @against_class["ShamanW"] %> L: <%= @against_class["Shaman"]-@against_class["ShamanW"] %></td>
+        <td><%= @against_class["ShamanP"] %></td>
+      </tr>
+      <tr>
+        <th class="h">Rogue</th>
+        <td>W: <%= @as_class["RogueW"] %> L: <%= @as_class["Rogue"]-@as_class["RogueW"] %></td>
+        <td><%= @as_class["RogueP"] %></td>
+        <td>W: <%= @against_class["RogueW"] %> L: <%= @against_class["Rogue"]-@against_class["RogueW"] %></td>
+        <td><%= @against_class["RogueP"] %></td>
+      </tr>
+      <tr>
+        <th class="h">Warlock</th>
+        <td>W: <%= @as_class["WarlockW"] %> L: <%= @as_class["Warlock"]-@as_class["WarlockW"] %></td>
+        <td><%= @as_class["WarlockP"] %></td>
+        <td>W: <%= @against_class["WarlockW"] %> L: <%= @against_class["Warlock"]-@against_class["WarlockW"] %></td>
+        <td><%= @against_class["WarlockP"] %></td>
+      </tr>
+      <tr>
+        <th class="h">Warrior</th>
+        <td>W: <%= @as_class["WarriorW"] %> L: <%= @as_class["Warrior"]-@as_class["WarriorW"] %></td>
+        <td><%= @as_class["WarriorP"] %></td>
+        <td>W: <%= @against_class["WarriorW"] %> L: <%= @against_class["Warrior"]-@against_class["WarriorW"] %></td>
+        <td><%= @against_class["WarriorP"] %></td>
       </tr>
     </table>
   </span>

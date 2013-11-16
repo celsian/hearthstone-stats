@@ -1,13 +1,15 @@
 <div class="row">
-  <span class="span6">
-    <h2>New Match:</h2>
+  <span class="span3">
+    <h2>New Arena:</h2>
   </span>
 </div>
 <div class="row">
-  <span class="span9">
-    <p>Enter your match results:</p>
+  <span class="span3">
+    <p>Please select your hero:</p>
   </span>
-  <span class="span9">
+</div>
+<div class="row">
+  <span class="span2">
     <%= form_for @arena do |f| %>
     <table>
       <tr>
@@ -16,12 +18,12 @@
         </th>
       </tr>
       <tr>
-        <td><center>
+        <td>
           <%= f.collection_select :hero, Match::HEROES, :to_s, :to_s, :include_blank => false %>
         </td>
       </tr>
       <tr>
-        <td colspan="3"><center><%= f.submit "Start Arena", class: "btn btn-primary" %></td>
+        <td colspan="3"><%= f.submit "Start Series", class: "btn btn-primary" %></td>
       </tr>
     </table>
     <% end %>

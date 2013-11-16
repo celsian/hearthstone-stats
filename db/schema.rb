@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20131115225720) do
   add_index "matches", ["arena_id"], name: "index_matches_on_arena_id", using: :btree
 
   create_table "users", force: true do |t|
+    t.string   "username"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
