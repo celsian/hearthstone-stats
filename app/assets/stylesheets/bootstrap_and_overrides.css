@@ -1,0 +1,15 @@
+/*
+  =require twitter-bootstrap-static/bootstrap
+
+  Use Font Awesome icons (default)
+  To use Glyphicons sprites instead of Font Awesome, replace with "require twitter-bootstrap-static/sprites"
+  =require twitter-bootstrap-static/fontawesome
+  */
+.input-mini { width: 60px; } .input-small { width: 90px; } .input-medium { width: 150px; } .input-large { width: 210px; } .input-xlarge { width: 270px; } .input-xxlarge { width: 530px; }
+select { width:90px !important; }
+
+.table td{ font-size:12px;}
+.table th{ font-size:12px;}
+.table th.c{ text-align: center;}
+.table th.h{ font-size: 14px;}
+.table th.hc{ font-size: 14px; text-align: center;}

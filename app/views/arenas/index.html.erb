@@ -1,0 +1,90 @@
+<div class="row">
+  <span class="span6">
+    <h2>Current Arena:</h2>
+  </span>
+  <span class="span3" align="right"s>
+    <p class="text-right">
+    <% if current_user.arenas.length > 0 %>
+      <% if current_user.arenas.last.complete %>
+        <%= link_to "New Arena", new_arena_path, class: "btn btn-primary" %>
+      <% end %>
+    <% else %>
+      <%= link_to "New Arena", new_arena_path, class: "btn btn-primary" %>
+    <% end %>
+    </p>
+  </span>
+</div>
+
+<div class="row">
+  <span class="span9">
+    <% if @arena %>
+      <B>Current Hero:</b> <%= @arena.hero %><br>
+      <B>Score:</b> <%= @arena_score %><br>
+      <%= link_to "Add Match Result", new_match_path, class: "btn-small btn-primary" %>
+    <% else %>
+    You have no active arena's, <%= link_to "Create One!", new_arena_path %>
+    <% end %>
+  </span>
+</div>
+
+<div class="row">
+  <span class="span6">
+    <h3>Arena Stats:</h3>
+  </span>
+</div>
+<div class="row">
+  <span class="span4">
+    <table class="table table-striped" border=0>
+      <tr><th colspan=3 class="hc">Overall Statistics</center></th></tr>
+      <tr>
+        <th width=50%>Wins/Losses:</th><td colspan=2><%= @overall %></td>
+      </tr>
+      <tr>
+        <th>Win rate:</th><td colspan=2><%= @overall_winrate %></td>
+      </tr>
+      <tr>
+        <th>Win rate when First:</th><td width="30%"><%= @first_winrate %></td><td><%= @first_winrate_percentage %></td>
+      </tr>
+      <tr>
+        <th>Win rate when Second:</th><td><%= @second_winrate %></td><td><%= @second_winrate_percentage %></td>
+      </tr>
+    </table>
+  </span>
+  <span class="span4 offset1">
+    <table class="table table-striped" border=0>
+      <tr><th colspan=4 class="hc">Series Statistics</center></th></tr>
+      <tr>
+        <th colspan=2 width=50%>Total Series:</th><td colspan=2><%= current_user.arenas.length %></td>
+      </tr>
+      <tr>
+        <th colspan=2>Profitable Series (7+ wins):</th><td colspan=2><%= @overall_winrate %></td>
+      </tr>
+      <tr>
+        <th width=25%>9-0 Series:</th><td widith=25%>100</td><th width=25%>9-X Series:</th><td width=25%>100</td>
+      </tr>
+      <tr>
+        <th>X-3 Series:</th><td>100</td><th>0-3 Series:</th><td>100</td>
+      </tr>
+    </table>
+  </span>
+</div>
+<div class="row">
+  <span class="span5 offset2">
+    <table class="table table-striped" border=0>
+      <tr>
+        <th class="hc" width=30%>Class:</th>
+        <th class="hc">Win rate as Class:</th>
+        <th class="hc">Win rate against Class:</th>
+      </tr>
+      <tr>
+        <th class="h">Druid</th><td>1</td><td>1</td>
+      </tr>
+      <tr>
+        <th class="h">Hunter</th><td>1</td><td>1</td>
+      </tr>
+      <tr>
+        <th class="h">Mage</th><td>1</td><td>1</td>
+      </tr>
+    </table>
+  </span>
+</div>
