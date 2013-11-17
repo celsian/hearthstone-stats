@@ -6,6 +6,7 @@ HearthstoneStats::Application.routes.draw do
   root to: "arenas#index"
 
   get "/stats/:username", to: "stats#show", as: "stats"
+  get "/stats/:username/edit", to: "stats#edit", as: "edit_stats"
 
   resources :matches
   resources :arenas
