@@ -44,13 +44,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Hearthstone Stats</a>
+          <a class="brand" href="#"><%= image_tag("hearthstone_icon.png", size: "24x24") %> Hearthstone Stats</a>
           <div class="container nav-collapse">
             <ul class="nav">
               <li><%= link_to "My Series", arenas_path  %></li>
               <% if user_signed_in? %>
                 <li><%= link_to "My Stats", stat_path(username: current_user.username)  %></li>
-                <li><%= link_to "Edit My Stat's", edit_stat_path(username: current_user.username) %></li>
               <% end %>
             </ul>
             <ul class="nav pull-right">
@@ -83,7 +82,6 @@
                 <li><%= link_to "My Series", arenas_path  %></li>
                 <% if user_signed_in? %>
                   <li><%= link_to "My Stat's ", stat_path(username: current_user.username)  %></li>
-                  <li><%= link_to "Edit My Stat's", edit_stat_path(username: current_user.username) %></li>
                 <% end %>
               </ul>
             </div><!--/.well -->
