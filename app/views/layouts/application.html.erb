@@ -49,7 +49,8 @@
             <ul class="nav">
               <li><%= link_to "My Series", arenas_path  %></li>
               <% if user_signed_in? %>
-                <li><%= link_to "My Stats", stats_path(username: current_user.username)  %></li>
+                <li><%= link_to "My Stats", stat_path(username: current_user.username)  %></li>
+                <li><%= link_to "Edit My Stat's", edit_stat_path(username: current_user.username) %></li>
               <% end %>
             </ul>
             <ul class="nav pull-right">
@@ -81,7 +82,8 @@
                 <li class="nav-header">Sidebar</li>
                 <li><%= link_to "My Series", arenas_path  %></li>
                 <% if user_signed_in? %>
-                  <li><%= link_to "My Stats ", stats_path(username: current_user.username)  %></li>
+                  <li><%= link_to "My Stat's ", stat_path(username: current_user.username)  %></li>
+                  <li><%= link_to "Edit My Stat's", edit_stat_path(username: current_user.username) %></li>
                 <% end %>
               </ul>
             </div><!--/.well -->
