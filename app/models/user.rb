@@ -1,4 +1,12 @@
 class User < ActiveRecord::Base
+  #ATTENTION:
+  #ATTENTION:
+  #ATTENTION:
+  #ATTENTION: Obsolete code should be removed after all User's have logged in at least once.
+  #ATTENTION: Earliest valid login for removing obsolete code is: 11-16-2013 4:00PM PST
+  #ATTENTION: Heroku Server runs on GMT 0 so 11-16-2013 23:55
+  #ATTENTION:
+  #ATTENTION:
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -7,9 +15,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   #My Input
-  has_many :arenas
+  has_many :arenas, dependent: :destroy
   has_many :matches, through: :arenas
-  has_one :stat
+  has_one :stat, dependent: :destroy
 
   validates :username, uniqueness: true
   validates :username, presence: true
