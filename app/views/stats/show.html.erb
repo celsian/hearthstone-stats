@@ -1,8 +1,13 @@
 <% if @user %>
 <div class="row">
-  <span class="span9">
-    <h2><%= "#{params[:username].titlecase}'s" %> Stats:</h2>
+  <span class="span7">
+    <h2><%= "#{params[:username].titlecase}'s" %> Stat's:</h2>
     <H4>Current Arena Series:</H4>
+  </span>
+  <span class="span2" align="right">
+    <% if current_user && current_user.username == params[:username] %>
+      <%= link_to "Edit Stat's", edit_stat_path(username: current_user.username), class: "btn btn-primary" %>
+    <% end %>
   </span>
 </div>
 <div class="row">
@@ -58,19 +63,19 @@
       <tr>
         <th colspan=2 width=40%>Profitable (7+ wins):</th>
         <td colspan=1><%= @user.stat.profitable_series %></td>
-        <td colspan=3><%= Stat.perc(@user.stat.profitable_series, @user.stat.total_series) %></td>
+        <td colspan=3><%= Stat.perc(@user.stat.profitable_series, @user.stat.total_series-@user.stat.profitable_series) %></td>
       </tr>
       <tr>
         <th width=25%>9-0 Series:</th>
-        <td widith=25%><%= @user.stat.nine0 %></td><td width="20%"><%= Stat.perc(@user.stat.nine0, @user.stat.total_series) %></td>
+        <td widith=25%><%= @user.stat.nine0 %></td><td width="20%"><%= Stat.perc(@user.stat.nine0, @user.stat.total_series-@user.stat.nine0) %></td>
         <th width=25%>9-X Series:</th>
-        <td width=25%><%= @user.stat.ninex %></td><td><%= Stat.perc(@user.stat.ninex, @user.stat.total_series) %></td>
+        <td width=25%><%= @user.stat.ninex %></td><td><%= Stat.perc(@user.stat.ninex, @user.stat.total_series-@user.stat.zerothree) %></td>
       </tr>
       <tr>
         <th>X-3 Series:</th>
-        <td><%= @user.stat.xthree %></td><td><%= Stat.perc(@user.stat.xthree, @user.stat.total_series) %></td>
+        <td><%= @user.stat.xthree %></td><td><%= Stat.perc(@user.stat.xthree, @user.stat.total_series-@user.stat.xthree) %></td>
         <th>0-3 Series:</th>
-        <td><%= @user.stat.zerothree %></td><td><%= Stat.perc(@user.stat.zerothree, @user.stat.total_series) %></td>
+        <td><%= @user.stat.zerothree %></td><td><%= Stat.perc(@user.stat.zerothree, @user.stat.total_series-@user.stat.zerothree) %></td>
       </tr>
     </table>
   </span>
