@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   #My Input
+  after_initialize :init
+
   has_many :arenas, dependent: :destroy
   has_many :matches, through: :arenas
   has_one :stat, dependent: :destroy
@@ -23,6 +25,10 @@ class User < ActiveRecord::Base
   validates :username, presence: true
 
   before_save { |user| user.username = user.username.downcase }
+
+  def init
+    Stat.create(user: self)
+  end
 
   def add_match_stats(match)
     if match.win
