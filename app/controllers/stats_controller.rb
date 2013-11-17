@@ -1,4 +1,6 @@
 class StatsController < ApplicationController
+  before_action :require_same_username, only: [:edit, :update]
+
   def show
     @user = User.find_by(username: params[:username].downcase)
 
@@ -18,4 +20,21 @@ class StatsController < ApplicationController
       @against_class = @user.winrate_against_class
     end
   end
+
+  def edit
+    @stats = User.find_by(username: params[:username].downcase).stat
+  end
+
+  def update
+
+  end
+
+  private
+
+  def require_same_username
+    unless current_user && current_user.username == params[:username].downcase
+      redirect_to root_path, flash: {error: "You are not authorized to perform that action."}
+    end
+  end
+
 end
