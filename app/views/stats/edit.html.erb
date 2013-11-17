@@ -1,0 +1,140 @@
+<% if @user %>
+<div class="row">
+  <span class="span9">
+    <h2><%= "#{params[:username].titlecase}'s" %> Stats:</h2>
+    <H4>Current Arena Series:</H4>
+  </span>
+</div>
+<div class="row">
+  <span class="span9">
+    <table border=0 cellpadding=5>
+      <tr>
+        <td>
+          <% if @arena %>
+            <B>Current Hero:</b> <%= @arena.hero %><br>
+            <B>Score:</b> <%= @arena_score %><br>
+          <% else %>
+            <%= "#{params[:username].titlecase} has no currently active Arena..." %>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  </span>
+</div>
+
+<div class="row">
+  <span class="span6">
+    <h4>Arena Stats:</h4>
+  </span>
+</div>
+<div class="row">
+  <span class="span4">
+    <table class="table table-striped" border=0>
+      <tr><th colspan=3 class="hc">Overall Statistics</center></th></tr>
+      <tr>
+        <th width=50%>Wins/Losses/Total:</th><td colspan=1><%= "W: #{@user.stat.wins} L: #{@user.stat.losses}" %></td><td><%= @user.stat.wins+@user.stat.losses %></td>
+      </tr>
+      <tr>
+        <th>Win rate:</th><td colspan=2><%= "#{Stat.perc(@user.stat.wins, @user.stat.losses)}" %></td>
+      </tr>
+      <tr>
+        <th>Win rate when First:</th>
+        <td width="30%"><%= "W: #{@user.stat.winrate_when_first_wins} L: #{@user.stat.winrate_when_first_losses}" %></td>
+        <td><%= "#{Stat.perc(@user.stat.winrate_when_first_wins,@user.stat.winrate_when_first_losses)}" %></td>
+      </tr>
+      <tr>
+        <th>Win rate when Second:</th>
+        <td width="30%"><%= "W: #{@user.stat.winrate_when_second_wins} L: #{@user.stat.winrate_when_second_losses}" %></td>
+        <td><%= "#{Stat.perc(@user.stat.winrate_when_second_wins,@user.stat.winrate_when_second_losses)}" %></td>
+      </tr>
+    </table>
+  </span>
+  <span class="span5">
+    <table class="table table-striped" border=0>
+      <tr><th colspan=6 class="hc">Series Statistics</center></th></tr>
+      <tr>
+        <th colspan=3><center>Total Series:</th><td colspan=3><center><%= "#{@user.stat.total_series}" %></td>
+      </tr>
+      <tr>
+        <th colspan=2 width=40%>Profitable (7+ wins):</th>
+        <td colspan=1><%= @user.stat.profitable_series %></td>
+        <td colspan=3><%= Stat.perc(@user.stat.profitable_series, @user.stat.total_series) %></td>
+      </tr>
+      <tr>
+        <th width=25%>9-0 Series:</th>
+        <td widith=25%><%= @user.stat.nine0 %></td><td width="20%"><%= Stat.perc(@user.stat.nine0, @user.stat.total_series) %></td>
+        <th width=25%>9-X Series:</th>
+        <td width=25%><%= @user.stat.ninex %></td><td><%= Stat.perc(@user.stat.ninex, @user.stat.total_series) %></td>
+      </tr>
+      <tr>
+        <th>X-3 Series:</th>
+        <td><%= @user.stat.xthree %></td><td><%= Stat.perc(@user.stat.xthree, @user.stat.total_series) %></td>
+        <th>0-3 Series:</th>
+        <td><%= @user.stat.zerothree %></td><td><%= Stat.perc(@user.stat.zerothree, @user.stat.total_series) %></td>
+      </tr>
+    </table>
+  </span>
+</div>
+<div class="row">
+  <span class="span7 offset1">
+    <table class="table table-striped" border=0>
+      <tr>
+        <th class="hc" width=20%>Class:</th>
+        <th class="hc" colspan=2 width=40%>Win rate as Class:</th>
+        <th class="hc" colspan=2 width=40%>Win rate against Class:</th>
+      </tr>
+      <tr>
+        <th class="h">Druid</th>
+        <td><%= "W: #{@user.stat.wr_as_druid_wins} L: #{@user.stat.wr_as_druid_losses}" %></td><td><%= Stat.perc(@user.stat.wr_as_druid_wins, @user.stat.wr_as_druid_losses) %></td>
+        <td><%= "W: #{@user.stat.wr_against_druid_wins} L: #{@user.stat.wr_against_druid_losses}" %></td><td><%= Stat.perc(@user.stat.wr_against_druid_wins, @user.stat.wr_against_druid_losses) %></td>
+      </tr>
+      <tr>
+        <th class="h">Hunter</th>
+        <td><%= "W: #{@user.stat.wr_as_hunter_wins} L: #{@user.stat.wr_as_hunter_losses}" %></td><td><%= Stat.perc(@user.stat.wr_as_hunter_wins, @user.stat.wr_as_hunter_losses) %></td>
+        <td><%= "W: #{@user.stat.wr_against_hunter_wins} L: #{@user.stat.wr_against_hunter_losses}" %></td><td><%= Stat.perc(@user.stat.wr_against_hunter_wins, @user.stat.wr_against_hunter_losses) %></td>
+      </tr>
+      <tr>
+        <th class="h">Mage</th>
+        <td><%= "W: #{@user.stat.wr_as_mage_wins} L: #{@user.stat.wr_as_mage_losses}" %></td><td><%= Stat.perc(@user.stat.wr_as_mage_wins, @user.stat.wr_as_mage_losses) %></td>
+        <td><%= "W: #{@user.stat.wr_against_mage_wins} L: #{@user.stat.wr_against_mage_losses}" %></td><td><%= Stat.perc(@user.stat.wr_against_mage_wins, @user.stat.wr_against_mage_losses) %></td>
+      </tr>
+      <tr>
+        <th class="h">Paladin</th>
+        <td><%= "W: #{@user.stat.wr_as_paladin_wins} L: #{@user.stat.wr_as_paladin_losses}" %></td><td><%= Stat.perc(@user.stat.wr_as_paladin_wins, @user.stat.wr_as_paladin_losses) %></td>
+        <td><%= "W: #{@user.stat.wr_against_paladin_wins} L: #{@user.stat.wr_against_paladin_losses}" %></td><td><%= Stat.perc(@user.stat.wr_against_paladin_wins, @user.stat.wr_against_paladin_losses) %></td>
+      </tr>
+      <tr>
+        <th class="h">Priest</th>
+        <td><%= "W: #{@user.stat.wr_as_priest_wins} L: #{@user.stat.wr_as_priest_losses}" %></td><td><%= Stat.perc(@user.stat.wr_as_priest_wins, @user.stat.wr_as_priest_losses) %></td>
+        <td><%= "W: #{@user.stat.wr_against_priest_wins} L: #{@user.stat.wr_against_priest_losses}" %></td><td><%= Stat.perc(@user.stat.wr_against_priest_wins, @user.stat.wr_against_priest_losses) %></td>
+      </tr>
+      <tr>
+        <th class="h">Shaman</th>
+        <td><%= "W: #{@user.stat.wr_as_shaman_wins} L: #{@user.stat.wr_as_shaman_losses}" %></td><td><%= Stat.perc(@user.stat.wr_as_shaman_wins, @user.stat.wr_as_shaman_losses) %></td>
+        <td><%= "W: #{@user.stat.wr_against_shaman_wins} L: #{@user.stat.wr_against_shaman_losses}" %></td><td><%= Stat.perc(@user.stat.wr_against_shaman_wins, @user.stat.wr_against_shaman_losses) %></td>
+      </tr>
+      <tr>
+        <th class="h">Rogue</th>
+        <td><%= "W: #{@user.stat.wr_as_rogue_wins} L: #{@user.stat.wr_as_rogue_losses}" %></td><td><%= Stat.perc(@user.stat.wr_as_rogue_wins, @user.stat.wr_as_rogue_losses) %></td>
+        <td><%= "W: #{@user.stat.wr_against_rogue_wins} L: #{@user.stat.wr_against_rogue_losses}" %></td><td><%= Stat.perc(@user.stat.wr_against_rogue_wins, @user.stat.wr_against_rogue_losses) %></td>
+      </tr>
+      <tr>
+        <th class="h">Warlock</th>
+        <td><%= "W: #{@user.stat.wr_as_warlock_wins} L: #{@user.stat.wr_as_warlock_losses}" %></td><td><%= Stat.perc(@user.stat.wr_as_warlock_wins, @user.stat.wr_as_warlock_losses) %></td>
+        <td><%= "W: #{@user.stat.wr_against_warlock_wins} L: #{@user.stat.wr_against_warlock_losses}" %></td><td><%= Stat.perc(@user.stat.wr_against_warlock_wins, @user.stat.wr_against_warlock_losses) %></td>
+      </tr>
+      <tr>
+        <th class="h">Warrior</th>
+        <td><%= "W: #{@user.stat.wr_as_warrior_wins} L: #{@user.stat.wr_as_warrior_losses}" %></td><td><%= Stat.perc(@user.stat.wr_as_warrior_wins, @user.stat.wr_as_warrior_losses) %></td>
+        <td><%= "W: #{@user.stat.wr_against_warrior_wins} L: #{@user.stat.wr_against_warrior_losses}" %></td><td><%= Stat.perc(@user.stat.wr_against_warrior_wins, @user.stat.wr_against_warrior_losses) %></td>
+      </tr>
+    </table>
+  </span>
+</div>
+<% else %>
+  <div class="row">
+    <span class="span6">
+      <h3>No such user: <%= params[:username] %></h3>
+    </span>
+  </div>
+<% end %>
