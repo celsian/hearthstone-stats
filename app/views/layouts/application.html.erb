@@ -76,13 +76,16 @@
           </div>
           <div class="span3">
             <div class="well sidebar-nav">
-              <h3>Sidebar</h3>
+              <h3>Quick Nav:</h3>
               <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
+                <li class="nav-header">Quick Links:</li>
                 <li><%= link_to "My Series", arenas_path  %></li>
                 <% if user_signed_in? %>
                   <li><%= link_to "My Stat's ", stat_path(username: current_user.username)  %></li>
                 <% end %>
+                <li class="nav-header">Quick Share:</li>
+                <li><a href="https://twitter.com/share" class="twitter-share-button" data-text="Just shared my Hearthstone Stat's at:" data-via="Celsian" data-hashtags="hs-stats">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></li>
               </ul>
             </div><!--/.well -->
           </div><!--/span-->
