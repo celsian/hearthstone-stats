@@ -1,3 +1,4 @@
+<% content_for :title do %>Edit Your Stats<% end %>
 <%= form_for @stats, url: update_stat_path(username: params[:username], id: @stats.id) do |f| %>
   <div class="row">
     <span class="span9">

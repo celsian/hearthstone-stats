@@ -1,4 +1,5 @@
 <% if @user %>
+<% content_for :title do %><%= @user.username.titlecase %><% end %>
 <div class="row">
   <span class="span7">
     <h2><%= "#{params[:username].titlecase}'s" %> Stat's:</h2>
