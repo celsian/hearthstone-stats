@@ -3,13 +3,13 @@
 Application is currently deployed at http://hs-stats.herokuapp.com
 
 
-v0.3
+v0.3:
 Stat Edit ability has been implemented.
   
-v0.2
+v0.2:
 Completely refactored how the App uses the database. There are no longer entries for every single match. Users will now have a minimum of 1 and maximum of 13 entries in the database at any time. This is paving the way for a future update.
 
-v0.1
+v0.1:
 This application is designed to provide users with a quick an efficient way to track their Hearthstone Arena Statistics.
 With this application you can:
   -Keep track of your current Arena Series
