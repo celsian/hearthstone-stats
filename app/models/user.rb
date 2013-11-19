@@ -63,7 +63,9 @@ class User < ActiveRecord::Base
 
   def check_arena_complete
     if arenas.length > 0 && arenas.last.complete
-      if arenas.last.score == 9 && arenas.last.matches.length == 9
+      if arenas.last.score == 0
+        stat["zerothree"] += 1
+      elsif arenas.last.score == 9 && arenas.last.matches.length == 9
         stat["nine0"] += 1
         stat["profitable_series"] += 1
       elsif arenas.last.score == 9 && arenas.last.matches.length > 9
@@ -73,8 +75,6 @@ class User < ActiveRecord::Base
         stat["profitable_series"] += 1
       elsif arenas.last.score < 7
         stat["xthree"] += 1
-      elsif arenas.last.score == 0
-        stat["zerothree"] += 1
       end
       arenas.last.destroy
       stat.save
