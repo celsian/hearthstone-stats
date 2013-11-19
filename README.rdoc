@@ -7,11 +7,11 @@ To share your stats you need only supply your friends with your username, they c
 Try it out for yourself! Check out my stats: http://hs-stats.herokuapp.com/stats/celsian
 
 
-* **0.3**: Stat Edit ability has been implemented.
+* *v0.3*: Stat Edit ability has been implemented.
   
-* **0.2**: Completely refactored how the App uses the database. There are no longer entries for every single match. Users will now have a minimum of 1 and maximum of 13 entries in the database at any time. This is paving the way for a future update.
+* *v0.2*: Completely refactored how the App uses the database. There are no longer entries for every single match. Users will now have a minimum of 1 and maximum of 13 entries in the database at any time. This is paving the way for a future update.
 
-* **0.1**: (Public Release) This application is designed to provide users with a quick an efficient way to track their Hearthstone Arena Statistics.
+* *v0.1*: (Public Release) This application is designed to provide users with a quick an efficient way to track their Hearthstone Arena Statistics.
 With this application you can:
   -Keep track of your current Arena Series
   -See your stat history update on the fly
