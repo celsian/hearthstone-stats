@@ -2,7 +2,7 @@
 
 Application is currently deployed at http://hs-stats.herokuapp.com
 
-To share your stats you need only supply your friends with your username, they can access your stats profile anytime anywhere at http://hs-stats.herokuapp.com/stats/[your_username]
+To share your stats you need only supply your friends with your username, they can access your stats profile anytime anywhere at http://hs-stats.herokuapp.com/stats/your_username
 
 Try it out for yourself! Check out my stats: http://hs-stats.herokuapp.com/stats/celsian
 
