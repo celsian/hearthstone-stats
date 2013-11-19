@@ -17,3 +17,4 @@ With this application you can:
   -See your stat history update on the fly
   -Check your Overall and Hero specific Win Percentages.
   -Share your stats with your friends.
+  -*NEW* Edit stats or input prior stats.
