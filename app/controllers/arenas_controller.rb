@@ -3,14 +3,14 @@ class ArenasController < ApplicationController
 
   def index
     current_user.check_for_stats
-    current_user.check_arena_complete
     @stats = current_user.stat
 
     @arena = Arena.current_arena(current_user)
     if @arena #Here to provide current arena stats only. Does not affect overall stats.
       @arena_score = @arena.score_formatted
     end
-    
+
+    current_user.check_arena_complete
   end
 
   def new
