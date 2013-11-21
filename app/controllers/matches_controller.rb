@@ -5,6 +5,9 @@ class MatchesController < ApplicationController
   end
 
   def new
+    if current_user.arenas.length == 0 || current_user.arenas.last.complete
+      redirect_to new_arena_path, flash: {error: "You have no currently active Arena. Please create one here."}
+    end
     @match = Match.new
   end
 
