@@ -18,12 +18,15 @@
 
 <div class="row">
   <span class="span9">
-    <table border=0 cellpadding=5>
+    <table border=0 cellpadding=5 width=50%>
       <tr>
         <td>
           <% if @arena %>
             <B>Current Hero:</b> <%= @arena.hero %><br>
             <B>Score:</b> <%= @arena_score %><br>
+            <% @arena.matches.each_with_index do |match, index| %>
+              <li><B>Match <%= index+1 %></B>: <%= match.enemy %> <%= match.first ? "First" : "Second" %> <%= match.win ? "Win" : "Loss" %> - <%= link_to "Edit", edit_match_path(match) %></li>
+            <% end %>
             <%= link_to "Report Match Result", new_match_path, class: "btn-small btn-primary" %>
           <% else %>
           You have no active arena's, <%= link_to "Create One!", new_arena_path %>
