@@ -61,6 +61,36 @@ class User < ActiveRecord::Base
     stat.save #commit changes to the DB
   end
 
+  def self.remove_match_stats(enemy, first, win, match, current_user)
+    if match.first
+      current_user.stat.wins -= 1
+      if match.first == first
+        current_user.stat.winrate_when_first_wins -= 1
+      else
+        current_user.stat.winrate_when_second_wins -= 1
+      end
+
+      str1 = "wr_as_" + match.arena.hero.downcase + "_wins"
+      current_user.stat[str1] -= 1
+
+      str2 = "wr_against_" + match.enemy.downcase + "_wins"
+      current_user.stat[str2] -= 1
+    else
+      current_user.current_user.stat.losses -= 1
+      if match.first == first
+        current_user.stat.winrate_when_first_losses -= 1
+      else
+        current_user.stat.winrate_when_second_losses -= 1
+      end
+
+      str1 = "wr_as_" + match.arena.hero.downcase + "_losses"
+      stat[str1] -= 1
+
+      str2 = "wr_against_" + match.enemy.downcase + "_losses"
+      stat[str2] -= 1
+    end
+  end
+
   def check_arena_complete
     if arenas.length > 0 && arenas.last.complete
       if arenas.last.score == 0
