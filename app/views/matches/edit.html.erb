@@ -1,0 +1,42 @@
+<% content_for :title do %>Match Reporting<% end %>
+<div class="row">
+  <span class="span6">
+    <h2>Report Match Results:</h2>
+  </span>
+</div>
+<div class="row">
+  <span class="span9">
+    <p>Edit your match results:</p>
+  </span>
+  <span class="span9">
+    <%= form_for @match do |f| %>
+    <table width="300">
+      <tr>
+        <th>
+          Enemy Hero:
+        </th>
+        <th>
+          I went:
+        </th>
+        <th>
+          Result:
+        </th>
+      </tr>
+      <tr>
+        <td><center>
+          <%= f.collection_select :enemy, Match::HEROES, :to_s, :to_s, :include_blank => false %>
+        </td>
+        <td><center>
+          <%= f.select :first, Match::TURN %>
+        </td>
+        <td><center>
+          <%= f.select :win, Match::WIN %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3"><center><%= f.submit "Add Match", class: "btn btn-primary" %></td>
+      </tr>
+    </table>
+    <% end %>
+  </span>
+</div>
