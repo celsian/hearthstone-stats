@@ -2,24 +2,6 @@ class ArenasController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    ##########################################
-    # Temporary Stats Removal
-    ##########################################
-    good_stat_ids = []
-    User.all.each do |user|
-      good_stat_ids << user.stat.id
-    end
-
-    Stat.all.each do |stat|
-      if !good_stat_ids.include?(stat.id)
-        stat.destroy
-      end
-    end
-
-    if !current_user.stat
-      Stat.create(user: current_user)
-    end
-
     @stats = current_user.stat
 
     @arena = Arena.current_arena(current_user)
