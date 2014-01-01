@@ -76,9 +76,9 @@
         <td colspan=3><%= Stat.perc(@stats.profitable_series, @stats.total_series-@stats.profitable_series) %></td>
       </tr>
       <tr>
-        <th width=25%>9-0 Series:</th>
+        <th width=25%>12-0 Series:</th>
         <td widith=25%><%= @stats.nine0 %></td><td width="20%"><%= Stat.perc(@stats.nine0, @stats.total_series-@stats.nine0) %></td>
-        <th width=25%>9-X Series:</th>
+        <th width=25%>12-X Series:</th>
         <td width=25%><%= @stats.ninex %></td><td><%= Stat.perc(@stats.ninex, @stats.total_series-@stats.ninex) %></td>
       </tr>
       <tr>

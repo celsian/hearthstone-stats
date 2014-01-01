@@ -13,7 +13,7 @@ class Arena < ActiveRecord::Base
             wins += 1
           end
         end
-        if wins == 9 || current_user.arenas.last.matches.length-wins >= 3
+        if wins == 12 || current_user.arenas.last.matches.length-wins >= 3
           current_user.arenas.last.complete = true
           current_user.arenas.last.save
         end
