@@ -1,7 +1,7 @@
 class Stat < ActiveRecord::Base
   belongs_to :user
 
-  after_initialize :init
+  after_create :init
 
   def init
       self.wins ||= 0
