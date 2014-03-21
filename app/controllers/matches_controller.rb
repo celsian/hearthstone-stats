@@ -12,15 +12,19 @@ class MatchesController < ApplicationController
   end
 
   def create
-    match = Match.new(match_params)
-    match.arena = current_user.arenas.last
+    if params["match"] && params["match"]["enemy"] && params["match"]["first"] != nil && params["match"]["win"] != nil
+      match = Match.new(match_params)
+      match.arena = current_user.arenas.last
 
-    if match.save
-      current_user.add_match_stats(match)
+      if match.save
+        current_user.add_match_stats(match)
 
-      redirect_to arenas_path, flash: {success: "Match results successfully added."}
+        redirect_to arenas_path, flash: {success: "Match results successfully added."}
+      else
+        render :new
+      end
     else
-      render :new
+      redirect_to new_match_path, flash: {error: "Error: You must select an enemy, starting position and result."}
     end
   end
 
