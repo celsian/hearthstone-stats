@@ -17,14 +17,18 @@ class ArenasController < ApplicationController
   end
 
   def create
-    arena = Arena.new(arena_params)
-    arena.user = current_user
-    if arena.save
-      current_user.add_arena_count
+    if params["arena"] && params["arena"]["hero"]
+      arena = Arena.new(arena_params)
+      arena.user = current_user
+      if arena.save
+        current_user.add_arena_count
 
-      redirect_to arenas_path, flash: {success: "Arena started successfully."}
+        redirect_to arenas_path, flash: {success: "Arena started successfully."}
+      else
+        render :new
+      end
     else
-      render :new
+      redirect_to new_arena_path, flash: {error: "Error: You must select a hero."}
     end
   end
 
