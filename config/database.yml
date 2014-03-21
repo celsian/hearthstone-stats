@@ -7,7 +7,7 @@ development:
   adapter: postgresql
   database: hearthstone_stats_dev
   host: localhost
-  username: dlatech
+  username: celsian
   pool: 5
 
 # Warning: The database defined as "test" will be erased and
@@ -17,12 +17,12 @@ test:
   adapter: postgresql
   database: hearthstone_stats_test
   host: localhost
-  username: dlatech
+  username: celsian
   pool: 5
 
 production:
   adapter: postgresql
   database: hearthstone_stats_production
   host: localhost
-  username: dlatech
+  username: celsian
   pool: 5
