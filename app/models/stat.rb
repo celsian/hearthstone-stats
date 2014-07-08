@@ -4,6 +4,8 @@ class Stat < ActiveRecord::Base
   before_save :init
 
   def init
+      self.best_key ||= 0
+
       self.wins ||= 0
       self.losses ||= 0
       self.winrate_when_first_wins ||= 0
