@@ -34,6 +34,7 @@ class Arena < ActiveRecord::Base
       end
       return win
     end
+    return 0
   end
 
   def score_formatted
