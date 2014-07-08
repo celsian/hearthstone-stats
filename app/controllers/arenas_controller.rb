@@ -7,12 +7,18 @@ class ArenasController < ApplicationController
     @arena = Arena.current_arena(current_user)
     if @arena #Here to provide current arena stats only. Does not affect overall stats.
       @arena_score = @arena.score_formatted
+      if @arena.score > (current_user.stat.best_key ||= 0)
+        stat = current_user.stat
+        stat.best_key = @arena.score
+        stat.save
+      end
     end
 
     current_user.check_arena_complete
   end
 
   def new
+    @action = params[:action]
     @arena = Arena.new
   end
 
@@ -30,6 +36,18 @@ class ArenasController < ApplicationController
     else
       redirect_to new_arena_path, flash: {error: "Error: You must select a hero."}
     end
+  end
+
+  def edit
+    @action = params[:action]
+    @arena = Arena.find(params[:id])
+  end
+
+  def update
+    @arena = Arena.find(params[:id])
+    @arena.hero = params["arena"]["hero"]
+    @arena.save
+    redirect_to arenas_path, flash: {success: "Arena updated successfully."}
   end
 
   private
