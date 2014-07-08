@@ -4,46 +4,4 @@
     <h2>New Arena:</h2>
   </span>
 </div>
-<div class="row">
-  <span class="span3">
-    <p>Please select your hero:</p>
-  </span>
-</div>
-<div class="row">
-  <span class="span2">
-    <%= form_for @arena do |f| %>
-    <table cellpadding="5" width=725>
-      <tr>
-        <th>
-          Your Hero:
-        </th>
-        <td>
-          <div class="btn-group" data-toggle="buttons-radio">
-            <%= f.radio_button :hero, 'Druid', :id=>"Druid", :style=>"display:none;" %>
-            <label for="Druid" class="btn btn-warning">Druid</label>
-            <%= f.radio_button :hero, 'Hunter', :id=>"Hunter", :style=>"display:none;" %>
-            <label for="Hunter" class="btn btn-success">Hunter</label>
-            <%= f.radio_button :hero, 'Mage', :id=>"Mage", :style=>"display:none;" %>
-            <label for="Mage" class="btn btn-info">Mage</label>
-            <%= f.radio_button :hero, 'Paladin', :id=>"Paladin", :style=>"display:none;" %>
-            <label for="Paladin" class="btn btn-pink">Paladin</label>
-            <%= f.radio_button :hero, 'Priest', :id=>"Priest", :style=>"display:none;" %>
-            <label for="Priest" class="btn">Priest</label>
-            <%= f.radio_button :hero, 'Rogue', :id=>"Rogue", :style=>"display:none;" %>
-            <label for="Rogue" class="btn btn-yellow">Rogue</label>
-            <%= f.radio_button :hero, 'Shaman', :id=>"Shaman", :style=>"display:none;" %>
-            <label for="Shaman" class="btn btn-primary">Shaman</label>
-            <%= f.radio_button :hero, 'Warlock', :id=>"Warlock", :style=>"display:none;" %>
-            <label for="Warlock" class="btn btn-purple">Warlock</label>
-            <%= f.radio_button :hero, 'Warrior', :id=>"Warrior", :style=>"display:none;" %>
-            <label for="Warrior" class="btn btn-tan">Warrior</label>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2"><%= f.submit "Start Series", class: "btn btn-primary" %></td>
-      </tr>
-    </table>
-    <% end %>
-  </span>
-</div>
+<%= render 'form' %>
